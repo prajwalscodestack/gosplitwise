@@ -3,11 +3,11 @@ package models
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type User struct {
-	Id       primitive.ObjectID   `json:"id" bson:"_id"`
-	Name     string               `json:"name" bson:"name"`
-	Mobile   string               `json:"mobile" bson:"mobile"`
-	Email    string               `json:"email" bson:"email"`
-	Password string               `json:"password,omitempty" bson:"-"`
+	Id       primitive.ObjectID   `json:"_id" bson:"_id"`
+	Name     string               `json:"name" bson:"name" validate:"required,min=3,max=20"`
+	Mobile   string               `json:"mobile" bson:"mobile" validate:"required,min=10"`
+	Email    string               `json:"email" bson:"email" validate:"required,email"`
+	Password string               `json:"password" bson:"password" validate:"required,required,min=5"`
 	Friends  []primitive.ObjectID `json:"friends" bson:"friends"`
 }
 
